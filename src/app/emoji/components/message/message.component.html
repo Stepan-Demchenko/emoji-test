@@ -1,0 +1,14 @@
+<section class="message">
+  <article class="message__date">
+    <div>
+      <img src="assets/icons/calendar.svg" alt="Calendar">
+      {{message.createdAt | date:'h:mm a | MMM d, y'}}
+    </div>
+    <div>
+      <img src="assets/icons/dots.svg" alt="Dots">
+    </div>
+  </article>
+  <article class="message__content">
+    {{message.message}}
+  </article>
+</section>
