@@ -13,9 +13,14 @@
     justify-content: space-between;
     color: $primary-color;
     width: 100%;
+    font-size: inherit;
+    div {
+      font-size: inherit;
+    }
   }
 
   &__content {
+    font-size: inherit;
     margin-top: 8px;
   }
 }

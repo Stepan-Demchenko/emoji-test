@@ -7,13 +7,11 @@ import { Message } from '../models/message';
 })
 export class MessageService {
   private messages = new BehaviorSubject<Message[] | []>([]);
-  private messages$: Observable<Message[] | []> = this.messages.asObservable();
 
-  constructor() {
-  }
+  constructor() {}
 
   getAll(): Observable<Message[] | []> {
-    return this.messages$;
+    return this.messages.asObservable();
   }
 
   addMessage(message: Message): void {

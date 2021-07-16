@@ -49,5 +49,6 @@ export class MessageBoxComponent implements OnInit {
   saveMessage(): void {
     this.messageService.addMessage({...this.form.value, createdAt: new Date()});
     this.form.get('message').patchValue('');
+    this.isOpenEmojiPack = false;
   }
 }
