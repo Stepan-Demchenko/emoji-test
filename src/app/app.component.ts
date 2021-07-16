@@ -1,10 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MessageService } from './shared/services/message.service';
+import { Observable } from 'rxjs';
+import { Message } from './shared/models/message';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'emoji-test';
+
+  @ViewChild('textAreaElement') private readonly textArea: ElementRef;
+  readonly messages$: Observable<Message[] | []> = this.messageService.getAll();
+
+  isOpenEmojiPack = false;
+  form: FormGroup;
+
+  constructor(private readonly fb: FormBuilder, private readonly messageService: MessageService) {
+  }
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  trackByFn = (index) => index;
+
+  addEmoji(selected: { $event: MouseEvent, emoji: EmojiData }): void {
+    const emoji: string = selected.emoji.native;
+    const message = this.textArea.nativeElement;
+    message.focus();
+
+    if (document.execCommand) {
+      document.execCommand('insertText', false, emoji);
+      return;
+    }
+    const [start, end] = [message.selectionStart, message.selectionEnd];
+    message.setRangeText(emoji, start, end, 'end');
+  }
+
+  private initializeForm(): void {
+    this.form = this.fb.group({
+      message: ['']
+    });
+  }
+
+  saveMessage(): void {
+    this.messageService.addMessage({...this.form.value, createdAt: new Date()});
+    this.form.get('message').patchValue('');
+    this.isOpenEmojiPack = false;
+  }
 }

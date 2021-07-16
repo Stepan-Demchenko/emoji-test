@@ -1,1 +1,29 @@
-<router-outlet></router-outlet>
+<article class="container">
+  <section class="message-container">
+    <article class="message-container__head">
+      <div>Your Diary</div>
+      <div><img src="assets/icons/arrow.svg" alt="Arrow right"></div>
+    </article>
+    <form [formGroup]="form" class="message-container__text-area">
+      <textarea #textAreaElement formControlName="message" rows="5" placeholder="Write something"></textarea>
+    </form>
+    <emoji-mart [hideObsolete]="true" class="emoji-pack" *ngIf="isOpenEmojiPack" [enableSearch]="false"
+                [showPreview]="false"
+                (emojiSelect)="addEmoji($event)"></emoji-mart>
+    <article class="message-container__actions">
+      <button class="emoji-btn" (click)="isOpenEmojiPack = !isOpenEmojiPack">
+        <ng-container *ngIf="!isOpenEmojiPack; else emojiIcon">
+          <img src="assets/icons/smile.svg" alt="Emoji btn">
+        </ng-container>
+        <ng-template #emojiIcon>
+          <img src="assets/icons/keyboard.png" alt="Emoji btn">
+        </ng-template>
+      </button>
+      <button class="btn" (click)="saveMessage()">Save</button>
+    </article>
+    <article class="message-container__message" *ngFor="let message of messages$ | async; trackBy: trackByFn">
+      <app-message [message]="message"></app-message>
+    </article>
+  </section>
+</article>
+

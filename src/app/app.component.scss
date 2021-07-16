@@ -1,0 +1,63 @@
+.message-container {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  width: 395px;
+  box-shadow: 0 0 7px rgba(0,0,0,0.2);
+
+  &__head {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    color: #3E52BE;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__text-area {
+    margin-top: 16px;
+
+    textarea {
+      width: 100%;
+      border: 1px solid #F7F8F9;
+      border-radius: 4px;
+      padding: 16px;
+    }
+  }
+
+  &__actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  &__message {
+    margin-bottom: 16px;
+  }
+}
+
+.emoji-btn {
+  border: unset;
+  cursor: pointer;
+  outline: none !important;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #cecece;
+  }
+}
+
+.emoji-pack {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.container {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
