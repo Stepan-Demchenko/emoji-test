@@ -1,3 +1,5 @@
+@import 'src/assets/styles/variables';
+
 .message {
   background: #F7F8F9;
   border-radius: 10px;
@@ -9,7 +11,7 @@
   &__date {
     display: flex;
     justify-content: space-between;
-    color: #3E52BE;
+    color: $primary-color;
     width: 100%;
   }
 

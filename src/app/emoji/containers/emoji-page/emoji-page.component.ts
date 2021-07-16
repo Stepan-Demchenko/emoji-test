@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-emoji-page',
   templateUrl: './emoji-page.component.html',
-  styleUrls: ['./emoji-page.component.scss']
+  styleUrls: ['./emoji-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EmojiPageComponent implements OnInit {
+export class EmojiPageComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
